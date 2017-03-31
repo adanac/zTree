@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="mybatis.mapper.PrivilegeMapper" >
+  <resultMap id="BaseResultMap" type="Privilege" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="create_id" property="createId" jdbcType="VARCHAR" />
+    <result column="update_id" property="updateId" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="validity" property="validity" jdbcType="TINYINT" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="function_name" property="functionName" jdbcType="VARCHAR" />
+    <result column="parent_id" property="parentId" jdbcType="TINYINT" />
+    <result column="is_leaf_node" property="isLeafNode" jdbcType="TINYINT" />
+    <result column="sub_system_id" property="subSystemId" jdbcType="INTEGER" />
+    <result column="is_hidden" property="isHidden" jdbcType="TINYINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, create_id, update_id, create_time, update_time, validity, code, function_name, 
+    parent_id, is_leaf_node, sub_system_id, is_hidden
+  </sql>
+
+  <select id="selectOneByCode" resultMap="BaseResultMap" parameterType="Privilege">
+    select
+    <include refid="Base_Column_List"/>
+    from t_ztree_privilege
+    <where>
+      <if test="id != null and id != ''">
+        and id = #{id}
+      </if>
+      <if test="createId != null and createId != ''">
+        and create_id = #{createId}
+      </if>
+      <if test="updateId != null and updateId != ''">
+        and updte_id = #{updateId}
+      </if>
+      <if test="code != null and code != ''">
+        and code = #{code}
+      </if>
+    </where>
+    limit 1
+  </select>
+  <delete id="deleteByCode" parameterType="Privilege" >
+    delete from t_ztree_privilege
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="Privilege" >
+    insert into t_ztree_privilege (id, create_id, update_id, 
+      create_time, update_time, validity, 
+      code, function_name, parent_id, 
+      is_leaf_node, sub_system_id, is_hidden
+      )
+    values (#{id,jdbcType=INTEGER}, #{createId,jdbcType=VARCHAR}, #{updateId,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{validity,jdbcType=TINYINT}, 
+      #{code,jdbcType=VARCHAR}, #{functionName,jdbcType=VARCHAR}, #{parentId,jdbcType=TINYINT}, 
+      #{isLeafNode,jdbcType=TINYINT}, #{subSystemId,jdbcType=INTEGER}, #{isHidden,jdbcType=TINYINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="Privilege" >
+    insert into t_ztree_privilege
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="createId != null" >
+        create_id,
+      </if>
+      <if test="updateId != null" >
+        update_id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="validity != null" >
+        validity,
+      </if>
+      <if test="code != null" >
+        code,
+      </if>
+      <if test="functionName != null" >
+        function_name,
+      </if>
+      <if test="parentId != null" >
+        parent_id,
+      </if>
+      <if test="isLeafNode != null" >
+        is_leaf_node,
+      </if>
+      <if test="subSystemId != null" >
+        sub_system_id,
+      </if>
+      <if test="isHidden != null" >
+        is_hidden,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="createId != null" >
+        #{createId,jdbcType=VARCHAR},
+      </if>
+      <if test="updateId != null" >
+        #{updateId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="validity != null" >
+        #{validity,jdbcType=TINYINT},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="functionName != null" >
+        #{functionName,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null" >
+        #{parentId,jdbcType=TINYINT},
+      </if>
+      <if test="isLeafNode != null" >
+        #{isLeafNode,jdbcType=TINYINT},
+      </if>
+      <if test="subSystemId != null" >
+        #{subSystemId,jdbcType=INTEGER},
+      </if>
+      <if test="isHidden != null" >
+        #{isHidden,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="Privilege" >
+    update t_ztree_privilege
+    <set >
+      <if test="createId != null" >
+        create_id = #{createId,jdbcType=VARCHAR},
+      </if>
+      <if test="updateId != null" >
+        update_id = #{updateId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="validity != null" >
+        validity = #{validity,jdbcType=TINYINT},
+      </if>
+      <if test="code != null" >
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="functionName != null" >
+        function_name = #{functionName,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null" >
+        parent_id = #{parentId,jdbcType=TINYINT},
+      </if>
+      <if test="isLeafNode != null" >
+        is_leaf_node = #{isLeafNode,jdbcType=TINYINT},
+      </if>
+      <if test="subSystemId != null" >
+        sub_system_id = #{subSystemId,jdbcType=INTEGER},
+      </if>
+      <if test="isHidden != null" >
+        is_hidden = #{isHidden,jdbcType=TINYINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="Privilege" >
+    update t_ztree_privilege
+    set create_id = #{createId,jdbcType=VARCHAR},
+      update_id = #{updateId,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      validity = #{validity,jdbcType=TINYINT},
+      code = #{code,jdbcType=VARCHAR},
+      function_name = #{functionName,jdbcType=VARCHAR},
+      parent_id = #{parentId,jdbcType=TINYINT},
+      is_leaf_node = #{isLeafNode,jdbcType=TINYINT},
+      sub_system_id = #{subSystemId,jdbcType=INTEGER},
+      is_hidden = #{isHidden,jdbcType=TINYINT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

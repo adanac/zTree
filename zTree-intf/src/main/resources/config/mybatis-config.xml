@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <typeAliases>
+        <typeAlias type="com.adanac.study.ztree.bean.Library" alias="Library"/>
+        <typeAlias type="com.adanac.study.ztree.bean.Privilege" alias="Privilege"/>
+        <typeAlias type="com.adanac.study.ztree.bean.ZTree" alias="ZTree" />
+    </typeAliases>
+</configuration>
