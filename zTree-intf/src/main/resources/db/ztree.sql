@@ -1,6 +1,6 @@
 /*
-SQLyog Ultimate v11.33 (64 bit)
-MySQL - 5.7.15 : Database - ztree
+SQLyog Enterprise v12.09 (64 bit)
+MySQL - 5.6.36 : Database - ztree
 *********************************************************************
 */
 
@@ -33,6 +33,37 @@ CREATE TABLE `t_library` (
   `order_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Table structure for table `t_tree` */
+
+DROP TABLE IF EXISTS `t_tree`;
+
+CREATE TABLE `t_tree` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `pid` int(11) DEFAULT NULL,
+  `name` varchar(255) COLLATE utf8mb4_bin DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+
+/*Table structure for table `t_ztree_privilege` */
+
+DROP TABLE IF EXISTS `t_ztree_privilege`;
+
+CREATE TABLE `t_ztree_privilege` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `create_id` varchar(255) COLLATE utf8mb4_bin DEFAULT NULL,
+  `update_id` varchar(255) COLLATE utf8mb4_bin DEFAULT NULL,
+  `create_time` datetime DEFAULT NULL,
+  `update_time` datetime DEFAULT NULL,
+  `validity` tinyint(2) DEFAULT NULL,
+  `code` varchar(11) COLLATE utf8mb4_bin DEFAULT NULL,
+  `function_name` varchar(50) COLLATE utf8mb4_bin DEFAULT NULL,
+  `parent_id` tinyint(2) DEFAULT NULL,
+  `is_leaf_node` tinyint(2) DEFAULT NULL,
+  `sub_system_id` int(11) DEFAULT NULL,
+  `is_hidden` tinyint(2) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=103 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
